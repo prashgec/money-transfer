@@ -6,6 +6,7 @@ import com.revolut.test.domain.TransferRequest;
 import com.revolut.test.domain.TransferService;
 import com.revolut.test.domain.exception.CustomException;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,7 +28,7 @@ public class TransferResource {
     }
 
     @POST
-    public Response transfer(TransferRequest transferRequest) {
+    public Response transfer(@Valid TransferRequest transferRequest) {
         try {
             return  Response.ok(service.performTransfer(transferRequest)).build();
         } catch (CustomException e) {
